@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Smart-Meter Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatable" content="ie=edge">
+    <meta name="theme-color" content="rgba(225, 225, 225,0.1)">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Poppins:300,700,900" rel="stylesheet">
+    <!-- <script type="text/javascript" src="dependencies/jquery-1.3.2.min.js"></script>  -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script type="text/javascript" src="js/backend.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <section id="login" class="login_style_add"> <!-- change spot -->
+    	<div class="wrap">
+	    	<div class="title">
+		      <h1>LOG IN</h1>
+		    </div>
+		    <div class="content">
+		    	<div class="box">
+					<div class="center-align">
+						<h2>CREDENTIALS</h2>
+						<input type="text" id="device_id" placeholder="Device ID"><br>
+						<input type="text" id="device_key" placeholder="Device Key"><br>
+            <input type="password" id="password" placeholder="Password">
+						<button onclick="myFunction()">VERIFY</button>
+					</div>
+				</div>
+		    </div>
+		</div>
+    </section>
+
+    <section id="insight">
+
+    	<div id="home_hero" style="text-align: left;">
+        
+        <div style="width: 60%; float: left">
+          <h1 style="text-align: left;">Welcome! 
+          <span>User</span></h1>
+        </div>
+
+        <div style="width: 40%; float: right; text-align: right;">
+          <a style="background-color: red; margin: 0 4vw 0 0; padding: 6px; background-color: #E5E7E9; border-color: #34495E; border: solid; border-width: 1px; border-radius: 5px; cursor: pointer;">Log out</a>
+        </div>
+
+        <br>
+
+        <div style="margin: 4% 0 5% 0%;">
+          
+          <div style="width: 50%; float: left">
+            <h2>User ID : <span>23168741</span></h2>
+          </div>
+
+          <div style="width: 50%; float: right">
+            <h2>Meter ID : <span>23168741</span></h2>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <div style="height: auto; width: 60%; float: left; margin: 5% 0 5% 3%;">
+          <canvas id="line-chart" height="100" width="200"></canvas>
+        </div>
+
+        <div style="width: 37%; float: right; text-align: center; color: #AAB7B8; margin: 9% 0 0 0; letter-spacing: 1px;">
+          <div>
+            <h1>
+              Net Bill <br>
+              <span style="font-family: Raleway; font-size: 3rem; color: #34495E;">₹1027.60</span>
+            </h1>
+          </div>
+          <br><br>
+          <div>
+            <h1>
+              Total Credits Earned <br>
+              <span style="font-family: Raleway; font-size: 3rem; color: #34495E;">₹159.50</span>
+            </h1>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <script type="text/javascript">
+    var canvas = document.getElementById('line-chart');
+    new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: ['00:00', '01:00', '02:00', '03:00', '04:00','05:00','06:00', '07:00', '08:00', '09:00', '10:00','11:00','12:00', '13:00', '14:00', '15:00', '16:00','17:00','18:00', '19:00', '20:00', '21:00', '22:00','23:00'],
+
+        datasets: [{
+          data: [10, 60, 45, 70, 69, 12, 10, 60, 84, 70, 25, 40, 10, 50, 84, 70, 40, 10, 10, 60, 84, 70, 69, 40],
+          label: 'Power Consumption (in kW)',
+          yAxisID: 'PC',
+          borderColor: "#283747",
+          borderWidth: 1,
+          borderDash: [7, 5],
+          pointBackgroundColor: "#55bae7",
+          pointBorderColor: "#000",
+          pointHoverBackgroundColor: "#55bae7",
+          pointHoverBorderColor: "#55bae7",
+          fill: false,
+        }, {
+          data: [4, 2, 5, 3, 5, 9, 4, 2, 2, 3, 3, 5, 4, 2, 4, 3, 5, 1, 4, 2, 1, 3, 5, 4],
+          label: 'Cost (in ₹)',
+          yAxisID: 'C',
+          borderColor: "#283747",
+          borderWidth: 1,
+          pointBackgroundColor: "#EB984E",
+          pointBorderColor: "#000",
+          pointHoverBackgroundColor: "#EB984E",
+          pointHoverBorderColor: "#EB984E",
+          fill: true
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            id: 'PC',
+            type: 'linear',
+            position: 'left',
+            ticks: {
+            //   max: 1,
+              min: 0
+            }
+          }, {
+            id: 'C',
+            type: 'linear',
+            position: 'right',
+            ticks: {
+            //   max: 1,
+              min: 0
+            }
+          }]
+        }
+      }
+    });
+    </script>
+  </body>
+</html>
